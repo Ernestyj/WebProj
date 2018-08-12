@@ -15,6 +15,11 @@ class TodoItem extends Component {
         console.log('TodoItem-componentWillReceiveProps')
     }
 
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('TodoItem-shouldComponentUpdate')
+        return nextProps.content !== this.props.content;
+    }
+
     componentWillUnmount(){
         console.log('TodoItem-componentWillUnmount')
     }
