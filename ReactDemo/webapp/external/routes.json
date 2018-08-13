@@ -1,0 +1,9 @@
+{
+  "/v1/*": "/$1",
+
+  "/actions/:_id": "/actions?_id=:_id",
+  "/policies/:_id": "/policies?_id=:_id",
+
+  "/:resource/:id/show": "/:resource/:id",
+  "/articles\\?id=:id": "/posts/:id"
+}
