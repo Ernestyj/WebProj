@@ -6,7 +6,7 @@ import axios from 'axios'
 // import './TodoList.css'
 import TodoItem from './TodoItem'
 import store from '../store/index'
-import {getListInputChangeAction, getListAddItemAction, getListItemDeleteAction} from '../store/actionCreators'
+import {getListInputChangeAction, getListAddItemAction, getListItemDeleteAction, initListAction, getTodoList} from '../store/actionCreators'
 
 
 class TodoList extends Component {
@@ -31,16 +31,20 @@ class TodoList extends Component {
 
     componentDidMount(){
         console.log('componentDidMount')
-        // axios.get('/api/todolist', {})
+        // axios.get('http://localhost:3004/v1/todolist', {})
         //     .then((res) => {
-        //         console.log(res.data)
-        //         this.setState(() => ({
-        //             list: [...res.data]
-        //         }))
+        //         // console.log(res.data)
+        //         // this.setState(() => ({
+        //         //     data: [...res.data]
+        //         // }))
+        //         const action = initListAction(res.data)
+        //         store.dispatch(action)
         //     })
         //     .catch(() => {
-        //         alert('error')
+        //         // alert('error')
         //     })
+        const action = getTodoList()
+        store.dispatch(action)
     }
 
     componentWillReceiveProps(){
