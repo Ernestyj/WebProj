@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import 'antd/dist/antd.css';  // or 'antd/dist/antd.less'
 import {Input, Button, List} from 'antd'
 import axios from 'axios'
+import {connect} from 'react-redux'
 
 // import './TodoList.css'
 import TodoItem from './TodoItem'
@@ -180,4 +181,20 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+const mapStateToProps = (state) => {
+    return {
+        inputValue: state.inputValue
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeInputValue(e){
+            // define action...
+            // dispatch(action)
+        }
+
+    }
+}
+
+// export default TodoList;
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

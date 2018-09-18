@@ -16,23 +16,21 @@ const defaultState = {
 // reducer 必须是纯函数（即不能有异步操作，也不能有不固定输出比如当前时间，也不能有任何副作用）
 export default (state=defaultState, action) => {
     // console.log(state, action)
-    if(action.type === CHANGE_INPUT_VALUE){
-        const newState = JSON.parse(JSON.stringify(state))
-        newState.inputValue = action.value
-        return newState
-    } else if(action.type === ADD_TODO_ITEM){
-        const newState = JSON.parse(JSON.stringify(state))
-        newState.data.push(newState.inputValue)
-        newState.inputValue = ''
-        return newState
-    } else if(action.type === DELETE_TODO_ITEM){
-        const newState = JSON.parse(JSON.stringify(state))
-        newState.data.pop(action.index)
-        return newState
-    } else if(action.type === INIT_LIST_ACTION){
-        const newState = JSON.parse(JSON.stringify(state))
-        newState.data = action.data
-        return newState
+    let newState = JSON.parse(JSON.stringify(state))
+    switch (action.type) {
+        case CHANGE_INPUT_VALUE:
+            newState.inputValue = action.value
+            return newState
+        case ADD_TODO_ITEM:
+            newState.data.push(newState.inputValue)
+            newState.inputValue = ''
+            return newState
+        case DELETE_TODO_ITEM:
+            newState.data.pop(action.index)
+            return newState
+        case INIT_LIST_ACTION:
+            newState.data = action.data
+            return newState
     }
     return state
 }
